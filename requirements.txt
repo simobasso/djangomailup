@@ -1,0 +1,4 @@
+django>=1.9.7
+rauth>=0.7.2
+
+# Additional requirements go here
