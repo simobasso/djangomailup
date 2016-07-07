@@ -2,6 +2,13 @@
 Usage
 ========
 
-To use djangomailup in a project::
+To use djangomailup in a project:
 
-    import djangomailup
+.. code-block:: python
+
+    from djangomailup import MailUpClient
+    
+    client = MailUpClient()
+    
+    # return account info
+    info = client.get_info()
