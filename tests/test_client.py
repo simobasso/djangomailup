@@ -16,7 +16,7 @@ from django.test import TestCase, override_settings
 from djangomailup import MailUpClient
 
 
-class TestDjangoMailupClient(TestCase):
+class TestAuthenticateSession(TestCase):
 
     @override_settings(MAILUP=None)
     def test_missing_configuration(self):
@@ -27,9 +27,18 @@ class TestDjangoMailupClient(TestCase):
         self.assertRaises(ImproperlyConfigured, MailUpClient)
 
     @override_settings(MAILUP={"default": {
-        "client_id": "12345"
+        "client_secret": "12345",
+        "username": "username",
+        "password": "password"
     }})
     def test_missing_client_id(self):
+        self.assertRaisesRegexp(
+            ImproperlyConfigured,
+            "Missing 'client_id' in 'default' configuration",
+            MailUpClient
+        )
+
+    def test_invalid_credentials(self):
         url = "https://services.mailup.com/Authorization/OAuth/Token"
         with requests_mock.mock() as m:
             m.post(url, text=(
@@ -40,19 +49,21 @@ class TestDjangoMailupClient(TestCase):
             ))
             self.assertRaisesRegexp(
                 Exception,
-                "Client credentials are invalid$",
+                "Client credentials are invalid",
                 MailUpClient
             )
 
-    def test_wrong_token_key(self):
+    def test_a_nonjson_response(self):
         url = "https://services.mailup.com/Authorization/OAuth/Token"
         with requests_mock.mock() as m:
             m.post(url, text=(
-                '{"token":"token"}'
+                '"error":"invalid_client",'
+                '"error_description":"Client credentials are invalid"'
             ))
+
             self.assertRaisesRegexp(
-                KeyError,
-                "Key access_token not in",
+                Exception,
+                "'response' is not JSON serializable: ",
                 MailUpClient
             )
 
@@ -62,7 +73,10 @@ class TestDjangoMailupApi(TestCase):
         url = "https://services.mailup.com/Authorization/OAuth/Token"
         with requests_mock.mock() as m:
             m.post(url, text=(
-                '{"access_token":"token"}'
+                '{'
+                '"access_token": "token",'
+                '"refresh_token": "refresh_token"'
+                '}'
             ))
             self.client = MailUpClient()
 

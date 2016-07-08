@@ -1,5 +1,5 @@
 =============================
-djangomailup
+Djangomailup
 =============================
 
 .. image:: https://badge.fury.io/py/djangomailup.png
@@ -90,9 +90,8 @@ Tools used this package:
 
 *  Cookiecutter_
 *  cookiecutter-djangopackage_
-*  rauth_
-
+* requests_
 
 .. _Cookiecutter: https://github.com/audreyr/cookiecutter
 .. _cookiecutter-djangopackage: https://github.com/pydanny/cookiecutter-djangopackage
-.. _rauth: https://github.com/litl/rauth
+.. _requests: https://github.com/kennethreitz/requests
