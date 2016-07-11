@@ -11,7 +11,7 @@ Basic usage:
 
 from .client import MailUpClient  # NOQA
 
-__version__ = '0.1.0'
+__version__ = '0.1.1'
 
 __title__ = 'djangomailup'
 __author__ = 'Simone Basso'
