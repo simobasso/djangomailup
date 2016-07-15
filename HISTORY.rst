@@ -3,6 +3,26 @@
 History
 -------
 
+0.2.0 (2016-07-15)
+++++++++++++++++++
+
+**Behavioural Changes**
+
+* remove rauth from dependencies
+
+**Improvements**
+
+* add codacy badge and coverage
+
+**Documentation**
+
+* add documentation for MailUpClient
+* add documentation for AuthenticateSession
+
+**Update**
+
+* update sphinx from 1.4.4 to 1.4.5
+
 0.1.1 (2016-07-11)
 ++++++++++++++++++
 
