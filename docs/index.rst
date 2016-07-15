@@ -7,10 +7,13 @@
 
 .. toctree::
    :maxdepth: 2
+   :hidden:
 
    readme
    installation
    usage
+   session
+   client
    contributing
    authors
    history

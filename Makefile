@@ -40,7 +40,7 @@ coverage: ## check code coverage quickly with the default Python
 	coverage run --source djangomailup runtests.py tests
 	coverage report -m
 	coverage html
-	open http://localhost:8000/
+	$(BROWSER) htmlcov/index.html
 
 docs: ## generate Sphinx HTML documentation, including API docs
 	rm -f docs/djangomailup.rst

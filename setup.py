@@ -54,7 +54,7 @@ setup(
     ],
     include_package_data=True,
     install_requires=[
-        'rauth>=0.7.2',
+        'requests==2.10.0',
     ],
     license="MIT",
     zip_safe=False,

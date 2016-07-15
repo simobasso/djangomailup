@@ -10,11 +10,11 @@ Basic usage:
 """
 
 from .client import MailUpClient  # NOQA
+from .oauth2 import AuthenticateSession  # NOQA
 
 __version__ = '0.1.1'
 
 __title__ = 'djangomailup'
 __author__ = 'Simone Basso'
 __license__ = 'MIT'
-__copyright__ = 'Copyright 2013 litl'
-__all__ = ['MailUpClient']
+__all__ = ('MailUpClient', )
