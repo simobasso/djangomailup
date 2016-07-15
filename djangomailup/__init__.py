@@ -12,7 +12,7 @@ Basic usage:
 from .client import MailUpClient  # NOQA
 from .oauth2 import AuthenticateSession  # NOQA
 
-__version__ = '0.1.1'
+__version__ = '0.2.0'
 
 __title__ = 'djangomailup'
 __author__ = 'Simone Basso'
