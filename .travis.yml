@@ -12,6 +12,7 @@ env:
   - DJANGO_VERSION=1.9.7
 
 before_install:
+  - pip install codacy-coverage
   - pip install codecov
 
 # command to install dependencies, e.g. pip install -r requirements.txt --use-mirrors
@@ -24,3 +25,5 @@ script: coverage run --source djangomailup runtests.py
 
 after_success:
   - codecov
+  - coverage xml
+  - python-codacy-coverage -r coverage.xml
