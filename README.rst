@@ -15,6 +15,9 @@ djangomailup
 .. image:: https://codecov.io/gh/simobasso/djangomailup/branch/master/graph/badge.svg
     :target: https://codecov.io/gh/simobasso/djangomailup
 
+.. image:: https://api.codacy.com/project/badge/Grade/df1f0dd3b14a4bc7ae43595a7880629d
+    :target: https://www.codacy.com/app/simobasso/djangomailup?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=simobasso/djangomailup&amp;utm_campaign=Badge_Grade
+
 Django app to integrate with MailUp
 
 Documentation
