@@ -96,3 +96,33 @@ class TestDjangoMailupApi(TestCase):
             })
             request = self.client.get_info()
         self.assertEquals(request.status_code, 200)
+
+    def test_read_list(self):
+        url = (
+            "https://services.mailup.com/API/v1.1/Rest/"
+            "ConsoleService.svc/Console/"
+            "User/Lists"
+        )
+        with requests_mock.mock() as m:
+            m.get(url, json={
+                "IsPaginated": False,
+                "Items": [{
+                    "Company": "",
+                    "Description": "",
+                    "Name": "Second List ",
+                    "idList": 2,
+                    "listGuid": "f34e5054-5555-4444-ffff-51acc36ae104"
+                }, {
+                    "Company": "",
+                    "Description": "This is a description",
+                    "Name": "Newsletter ",
+                    "idList": 1,
+                    "listGuid": "49494949-4444-9999-8888-185543409eb7"
+                }],
+                "PageNumber": 0,
+                "PageSize": 5,
+                "Skipped": 0,
+                "TotalElementsCount": 2
+            })
+            request = self.client.read_lists()
+        self.assertEquals(request.status_code, 200)

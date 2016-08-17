@@ -39,3 +39,15 @@ class MailUpClient(AuthenticateSession):
         Reference: `Account Info <http://help.mailup.com/display/mailupapi/Accounts#Accounts-ObtainingMailUpaccountdetailsfortheconnectedaccount>`_
         """
         return self.get(ENDPOINT["info"])
+
+    def read_lists(self):
+        """
+        Return the lists that are visible for authenticated user.
+
+        Take a look at MailUp's documentation
+        if you want know more about Read Lists
+
+        Reference: `Read Lists
+        <http://help.mailup.com/display/mailupapi/Manage+Lists+and+Groups#ManageListsandGroups-Lists/#ManageListsandGroups-ReadLists>`_
+        """
+        return self.get(ENDPOINT["lists"])
