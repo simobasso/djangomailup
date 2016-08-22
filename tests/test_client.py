@@ -87,14 +87,12 @@ class TestDjangoMailupApi(TestCase):
             "Authentication/Info"
         )
         with requests_mock.mock() as m:
-            m.get(url, text=(
-                "{"
-                "u'Company': u'test',"
-                "u'IsTrial': False,"
-                "u'UID': u'12345',"
-                "u'Username': u'mtest',"
-                "u'Version': u'8.9.4'"
-                "}"
-            ))
+            m.get(url, json={
+                "Company": "test",
+                "IsTrial": False,
+                "UID": "12345",
+                "Username": "mtest",
+                "Version": "8.9.4"
+            })
             request = self.client.get_info()
         self.assertEquals(request.status_code, 200)
