@@ -87,14 +87,149 @@ class TestDjangoMailupApi(TestCase):
             "Authentication/Info"
         )
         with requests_mock.mock() as m:
-            m.get(url, text=(
-                "{"
-                "u'Company': u'test',"
-                "u'IsTrial': False,"
-                "u'UID': u'12345',"
-                "u'Username': u'mtest',"
-                "u'Version': u'8.9.4'"
-                "}"
-            ))
+            m.get(url, json={
+                "Company": "test",
+                "IsTrial": False,
+                "UID": "12345",
+                "Username": "mtest",
+                "Version": "8.9.4"
+            })
             request = self.client.get_info()
+        self.assertEquals(request.status_code, 200)
+
+    def test_read_list(self):
+        url = (
+            "https://services.mailup.com/API/v1.1/Rest/"
+            "ConsoleService.svc/Console/"
+            "User/Lists"
+        )
+        with requests_mock.mock() as m:
+            m.get(url, json={
+                "IsPaginated": False,
+                "Items": [{
+                    "Company": "",
+                    "Description": "",
+                    "Name": "Second List ",
+                    "idList": 2,
+                    "listGuid": "f34e5054-5555-4444-ffff-51acc36ae104"
+                }, {
+                    "Company": "",
+                    "Description": "This is a description",
+                    "Name": "Newsletter ",
+                    "idList": 1,
+                    "listGuid": "49494949-4444-9999-8888-185543409eb7"
+                }],
+                "PageNumber": 0,
+                "PageSize": 5,
+                "Skipped": 0,
+                "TotalElementsCount": 2
+            })
+            request = self.client.read_lists()
+        self.assertEquals(request.status_code, 200)
+
+    def test_create_lists(self):
+        url = (
+            "https://services.mailup.com/API/v1.1/Rest/"
+            "ConsoleService.svc/Console/"
+            "User/Lists"
+        )
+        with requests_mock.mock() as m:
+            m.post(url, json={
+                "IdList": 2,
+            })
+            request = self.client.create_lists("New Arrivals")
+        self.assertEquals(request.status_code, 200)
+
+        with requests_mock.mock() as m:
+            m.post(url, json={
+                "IdList": 3,
+            })
+            request = self.client.create_lists("New Arrivals 2", extra={
+                "public": False,
+            })
+        self.assertEquals(request.status_code, 200)
+
+    def test_update_lists(self):
+        url = (
+            "https://services.mailup.com/API/v1.1/Rest/"
+            "ConsoleService.svc/Console/"
+            "User/Lists/2"
+        )
+        with requests_mock.mock() as m:
+            m.post(url, json={
+                "bouncedemail": "g1g7g@g1g7g.bounce.smtpnext.com",
+                "charset": "UTF-8",
+                "conversionlab_trackcode": "",
+                "default_prefix": "001",
+                "description": "Use this list to inform subscribers about new products",
+                "disclaimer": "Safely Subscribe System",
+                "displayas": "campo1,campo2,campo3",
+                "format": "html",
+                "frontendform": True,
+                "kbmax": 100,
+                "multi_optout_list": "2",
+                "multipart_text": True,
+                "nl_sendername": "John Smith",
+                "notifyemail": None,
+                "optout_type": 0,
+                "owneremail": "john@example.com",
+                "public": True,
+                "replyto": "mary@example.com",
+                "sendconfirmsms": False,
+                "sendemailoptout": False,
+                "senderfax": "",
+                "senderfaxname": "",
+                "sms_sendername": "SMSText",
+                "subscribedemail": True,
+                "tracking": True,
+                "Customer": True,
+                "IdList": 2,
+                "Name": "New Arrivals",
+                "business": True,
+                "scope": "newsletters"
+            })
+            request = self.client.update_lists(2)
+        self.assertEquals(request.status_code, 200)
+
+        url = (
+            "https://services.mailup.com/API/v1.1/Rest/"
+            "ConsoleService.svc/Console/"
+            "User/Lists/3"
+        )
+        with requests_mock.mock() as m:
+            m.post(url, json={
+                "bouncedemail": "g1g7g@g1g7g.bounce.smtpnext.com",
+                "charset": "UTF-8",
+                "conversionlab_trackcode": "",
+                "default_prefix": "001",
+                "description": "Use this list to inform subscribers about new products",
+                "disclaimer": "Safely Subscribe System",
+                "displayas": "campo1,campo2,campo3",
+                "format": "html",
+                "frontendform": True,
+                "kbmax": 100,
+                "multi_optout_list": "2",
+                "multipart_text": True,
+                "nl_sendername": "John Smith",
+                "notifyemail": None,
+                "optout_type": 0,
+                "owneremail": "john@example.com",
+                "public": False,
+                "replyto": "mary@example.com",
+                "sendconfirmsms": False,
+                "sendemailoptout": False,
+                "senderfax": "",
+                "senderfaxname": "",
+                "sms_sendername": "SMSText",
+                "subscribedemail": True,
+                "tracking": True,
+                "Customer": True,
+                "IdList": 3,
+                "Name": "New Arrivals",
+                "business": True,
+                "scope": "newsletters"
+            })
+            request = self.client.update_lists(3, extra={
+                "public": False,
+            })
         self.assertEquals(request.status_code, 200)
