@@ -148,3 +148,88 @@ class TestDjangoMailupApi(TestCase):
                 "public": False,
             })
         self.assertEquals(request.status_code, 200)
+
+    def test_update_lists(self):
+        url = (
+            "https://services.mailup.com/API/v1.1/Rest/"
+            "ConsoleService.svc/Console/"
+            "User/Lists/2"
+        )
+        with requests_mock.mock() as m:
+            m.post(url, json={
+                "bouncedemail": "g1g7g@g1g7g.bounce.smtpnext.com",
+                "charset": "UTF-8",
+                "conversionlab_trackcode": "",
+                "default_prefix": "001",
+                "description": "Use this list to inform subscribers about new products",
+                "disclaimer": "Safely Subscribe System",
+                "displayas": "campo1,campo2,campo3",
+                "format": "html",
+                "frontendform": True,
+                "kbmax": 100,
+                "multi_optout_list": "2",
+                "multipart_text": True,
+                "nl_sendername": "John Smith",
+                "notifyemail": None,
+                "optout_type": 0,
+                "owneremail": "john@example.com",
+                "public": True,
+                "replyto": "mary@example.com",
+                "sendconfirmsms": False,
+                "sendemailoptout": False,
+                "senderfax": "",
+                "senderfaxname": "",
+                "sms_sendername": "SMSText",
+                "subscribedemail": True,
+                "tracking": True,
+                "Customer": True,
+                "IdList": 2,
+                "Name": "New Arrivals",
+                "business": True,
+                "scope": "newsletters"
+            })
+            request = self.client.update_lists(2)
+        self.assertEquals(request.status_code, 200)
+
+        url = (
+            "https://services.mailup.com/API/v1.1/Rest/"
+            "ConsoleService.svc/Console/"
+            "User/Lists/3"
+        )
+        with requests_mock.mock() as m:
+            m.post(url, json={
+                "bouncedemail": "g1g7g@g1g7g.bounce.smtpnext.com",
+                "charset": "UTF-8",
+                "conversionlab_trackcode": "",
+                "default_prefix": "001",
+                "description": "Use this list to inform subscribers about new products",
+                "disclaimer": "Safely Subscribe System",
+                "displayas": "campo1,campo2,campo3",
+                "format": "html",
+                "frontendform": True,
+                "kbmax": 100,
+                "multi_optout_list": "2",
+                "multipart_text": True,
+                "nl_sendername": "John Smith",
+                "notifyemail": None,
+                "optout_type": 0,
+                "owneremail": "john@example.com",
+                "public": False,
+                "replyto": "mary@example.com",
+                "sendconfirmsms": False,
+                "sendemailoptout": False,
+                "senderfax": "",
+                "senderfaxname": "",
+                "sms_sendername": "SMSText",
+                "subscribedemail": True,
+                "tracking": True,
+                "Customer": True,
+                "IdList": 3,
+                "Name": "New Arrivals",
+                "business": True,
+                "scope": "newsletters"
+            })
+            request = self.client.update_lists(3, extra={
+                "public": False,
+            })
+        self.assertEquals(request.status_code, 200)

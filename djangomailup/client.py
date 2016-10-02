@@ -80,3 +80,29 @@ class MailUpClient(AuthenticateSession):
             data.update(**extra)
 
         return self.post(ENDPOINT["lists"], data=data)
+
+    def update_lists(self, list_id, extra=None):
+        """
+        Update an existing list.
+
+        :param str list_id: id of the list
+        :param extra: override default params
+        :type extra: dict or None
+        Take a look at MailUp's documentation
+        if you want know more about Update list
+
+        Reference: `Update Lists
+        <http://help.mailup.com/display/mailupapi/Manage+Lists+and+Groups#ManageListsandGroups-UpdateList>`_
+        """
+        data = {}
+
+        if extra:
+            data.update(**extra)
+
+        return self.post(
+            "{}/{}".format(
+                ENDPOINT["lists"],
+                list_id,
+            ),
+            data=data
+        )
