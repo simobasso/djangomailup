@@ -126,3 +126,25 @@ class TestDjangoMailupApi(TestCase):
             })
             request = self.client.read_lists()
         self.assertEquals(request.status_code, 200)
+
+    def test_create_lists(self):
+        url = (
+            "https://services.mailup.com/API/v1.1/Rest/"
+            "ConsoleService.svc/Console/"
+            "User/Lists"
+        )
+        with requests_mock.mock() as m:
+            m.post(url, json={
+                "IdList": 2,
+            })
+            request = self.client.create_lists("New Arrivals")
+        self.assertEquals(request.status_code, 200)
+
+        with requests_mock.mock() as m:
+            m.post(url, json={
+                "IdList": 3,
+            })
+            request = self.client.create_lists("New Arrivals 2", extra={
+                "public": False,
+            })
+        self.assertEquals(request.status_code, 200)

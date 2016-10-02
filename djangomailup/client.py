@@ -51,3 +51,32 @@ class MailUpClient(AuthenticateSession):
         <http://help.mailup.com/display/mailupapi/Manage+Lists+and+Groups#ManageListsandGroups-Lists/#ManageListsandGroups-ReadLists>`_
         """
         return self.get(ENDPOINT["lists"])
+
+    def create_lists(self, name, default=1, scope="newsletters", extra=None):
+        """
+        Create a new list.
+
+        :param str name: Name of new list
+        :param int default: list as a template
+        :param scope: Type of list
+        :type scope: newsletters or Direct_Advertising or Transactional
+        :param extra: override default params
+        :type extra: dict or None
+
+        Take a look at MailUp's documentation
+        if you want know more about Create list
+
+        Reference: `Create Lists
+        <http://help.mailup.com/display/mailupapi/Manage+Lists+and+Groups#ManageListsandGroups-Lists/#ManageListsandGroups-CreateList>`_
+        """
+        data = {
+            "Name": name,
+            "useDefaultSettings": bool(default),
+            "idSettings": default,
+            "scope": scope,
+        }
+
+        if extra:
+            data.update(**extra)
+
+        return self.post(ENDPOINT["lists"], data=data)
