@@ -101,7 +101,7 @@ class TestDjangoMailupApi(TestCase):
         url = (
             "https://services.mailup.com/API/v1.1/Rest/"
             "ConsoleService.svc/Console/"
-            "User/Lists"
+            "Lists"
         )
         with requests_mock.mock() as m:
             m.get(url, json={
@@ -131,7 +131,7 @@ class TestDjangoMailupApi(TestCase):
         url = (
             "https://services.mailup.com/API/v1.1/Rest/"
             "ConsoleService.svc/Console/"
-            "User/Lists"
+            "Lists"
         )
         with requests_mock.mock() as m:
             m.post(url, json={
@@ -153,7 +153,7 @@ class TestDjangoMailupApi(TestCase):
         url = (
             "https://services.mailup.com/API/v1.1/Rest/"
             "ConsoleService.svc/Console/"
-            "User/Lists/2"
+            "Lists/2"
         )
         with requests_mock.mock() as m:
             m.post(url, json={
@@ -194,7 +194,7 @@ class TestDjangoMailupApi(TestCase):
         url = (
             "https://services.mailup.com/API/v1.1/Rest/"
             "ConsoleService.svc/Console/"
-            "User/Lists/3"
+            "Lists/3"
         )
         with requests_mock.mock() as m:
             m.post(url, json={
