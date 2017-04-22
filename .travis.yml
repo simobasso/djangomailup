@@ -10,6 +10,8 @@ python:
 env:
   - DJANGO_VERSION=1.8.13
   - DJANGO_VERSION=1.9.7
+  - DJANGO_VERSION=1.10.7
+  - DJANGO_VERSION=1.11
 
 before_install:
   - pip install codacy-coverage
