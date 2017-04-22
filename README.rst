@@ -12,8 +12,8 @@ Djangomailup
 .. image:: https://travis-ci.org/simobasso/djangomailup.png?branch=master
     :target: https://travis-ci.org/simobasso/djangomailup
 
-.. image:: https://coveralls.io/repos/github/simobasso/djangomailup/badge.svg?branch=upgrade_travis
-    :target: https://coveralls.io/github/simobasso/djangomailup?branch=upgrade_travis
+.. image:: https://coveralls.io/repos/github/simobasso/djangomailup/badge.svg
+    :target: https://coveralls.io/github/simobasso/djangomailup
 
 .. image:: https://api.codacy.com/project/badge/Grade/df1f0dd3b14a4bc7ae43595a7880629d
     :target: https://www.codacy.com/app/simobasso/djangomailup?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=simobasso/djangomailup&amp;utm_campaign=Badge_Grade
