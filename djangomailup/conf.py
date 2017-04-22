@@ -13,5 +13,5 @@ ENDPOINT = {
     "authorize": "{}LogOn".format(AUTHORIZE),
     "token": "{}Token".format(AUTHORIZE),
     "info": "{}Authentication/Info".format(CONSOLE),
-    "lists": "{}User/Lists".format(CONSOLE),
+    "lists": "{}Lists".format(CONSOLE),
 }
