@@ -31,7 +31,7 @@ Requirements
 *  OAuth2 `tokens for the MailUp REST API`_
 *  MailUp account
 *  Django >= 1.8
-*  python 2.7+, 3.4+
+*  python 2.7+, 3.5+
 
 .. _tokens for the MailUp REST API: http://help.mailup.com/display/mailupapi/Authenticating+with+OAuth+v2
 
